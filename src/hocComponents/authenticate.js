@@ -6,7 +6,8 @@ const Authenticate = App =>
     constructor(props) {
       super(props);
       this.state = {
-        loggedIn: false
+        loggedIn: false,
+        typeofmem: "instructor"
       };
     }
 
@@ -19,7 +20,8 @@ const Authenticate = App =>
     }
 
     render() {
-      if (this.state.loggedIn) return <App />;
+      if (this.state.loggedIn && this.state.typeofmem)
+        return <App typeofmem={this.state.typeofmem} />;
       return <Authorize />;
     }
   };

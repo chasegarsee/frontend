@@ -7,7 +7,7 @@ class Authorize extends Component {
     super(props);
     this.state = {
       register: null,
-      instructor: null,
+      typeof: null,
       selected: false
     };
   }
@@ -17,7 +17,7 @@ class Authorize extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.register === null || this.state.instructor === null) {
+    if (this.state.register === null || this.state.typeof === null) {
       alert("must fill out register/login and instructor/user");
     } else {
       this.setState({ ...this.state, selected: true });
@@ -27,10 +27,10 @@ class Authorize extends Component {
   render() {
     console.log(`this.state ${this.state}`);
     if (this.state.register === "true" && this.state.selected === true) {
-      return <Register insturctor={this.state.instructor} />;
+      return <Register typeof={this.state.typeof} />;
     }
     if (this.state.register === "false" && this.state.selected === true) {
-      return <Login instructor={this.state.instructor} />;
+      return <Login typeof={this.state.typeof} />;
     }
     return (
       <div>
@@ -60,20 +60,20 @@ class Authorize extends Component {
           <div>instructor or user</div>
           <label>
             <input
-              name="instructor"
+              name="typeof"
               type="radio"
               onChange={this.authHandler}
-              value={true}
+              value={"insturctor"}
             />
             instructor
             <br />
           </label>
           <label>
             <input
-              name="instructor"
+              name="typeof"
               type="radio"
               onChange={this.authHandler}
-              value={false}
+              value={"user"}
             />
             user
             <br />

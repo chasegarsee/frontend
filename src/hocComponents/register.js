@@ -25,6 +25,16 @@ class Register extends Component {
   render() {
     return (
       <div>
+        {(() => {
+          switch (this.props.typeof) {
+            case "insturctor":
+              return <div>instructor registration</div>;
+            case "user":
+              return <div>user registration</div>;
+            default:
+              return null;
+          }
+        })()}
         <form onSubmit={this.submitHandler}>
           <div>username:</div>
           <input

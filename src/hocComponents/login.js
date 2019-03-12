@@ -25,6 +25,16 @@ class Login extends Component {
   render() {
     return (
       <div>
+        {(() => {
+          switch (this.props.typeof) {
+            case "instructor":
+              return <div> instructor login </div>;
+            case "user":
+              return <div> user login </div>;
+            default:
+              return null;
+          }
+        })()}
         <form onSubmit={this.submitHandler}>
           <div>username:</div>
           <input

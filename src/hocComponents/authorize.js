@@ -7,17 +7,17 @@ class Authorize extends Component {
     super(props);
     this.state = {
       register: null,
-      typeof: null,
+      typeofmem: null,
       selected: false
     };
   }
   authHandler = e => {
-    console.log(`${e.target.name}, ${e.target.value}`);
+    // console.log(`${e.target.name}, ${e.target.value}`);
     this.setState({ [e.target.name]: e.target.value });
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.register === null || this.state.typeof === null) {
+    if (this.state.register === null || this.state.typeofmem === null) {
       alert("must fill out register/login and instructor/user");
     } else {
       this.setState({ ...this.state, selected: true });
@@ -25,12 +25,12 @@ class Authorize extends Component {
   };
 
   render() {
-    console.log(`this.state ${this.state}`);
+    // console.log(`this.state ${this.state}`);
     if (this.state.register === "true" && this.state.selected === true) {
-      return <Register typeof={this.state.typeof} />;
+      return <Register typeofmem={this.state.typeofmem} />;
     }
     if (this.state.register === "false" && this.state.selected === true) {
-      return <Login typeof={this.state.typeof} />;
+      return <Login typeofmem={this.state.typeofmem} />;
     }
     return (
       <div>
@@ -60,7 +60,7 @@ class Authorize extends Component {
           <div>instructor or user</div>
           <label>
             <input
-              name="typeof"
+              name="typeofmem"
               type="radio"
               onChange={this.authHandler}
               value={"insturctor"}
@@ -70,7 +70,7 @@ class Authorize extends Component {
           </label>
           <label>
             <input
-              name="typeof"
+              name="typeofmem"
               type="radio"
               onChange={this.authHandler}
               value={"user"}

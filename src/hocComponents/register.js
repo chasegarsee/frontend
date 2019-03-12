@@ -26,7 +26,7 @@ class Register extends Component {
     return (
       <div>
         {(() => {
-          switch (this.props.typeof) {
+          switch (this.props.typeofmem) {
             case "insturctor":
               return <div>instructor registration</div>;
             case "user":

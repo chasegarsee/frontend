@@ -26,7 +26,7 @@ class Login extends Component {
     return (
       <div>
         {(() => {
-          switch (this.props.typeof) {
+          switch (this.props.typeofmem) {
             case "instructor":
               return <div> instructor login </div>;
             case "user":

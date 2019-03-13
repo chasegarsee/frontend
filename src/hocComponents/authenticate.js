@@ -44,6 +44,18 @@ const Authenticate = App =>
       this.setState({ loggedIn: true });
       const username = this.state.usernameInput;
       const password = this.state.passwordInput;
+      const newUser = {
+        username: this.state.usernameInput,
+        password: this.state.passwordInput
+      };
+      axios
+        .post(
+          "https://airfitness.herokuapp.com/api/instructors/register",
+          newUser
+        )
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
+      //
       localStorage.setItem("user", username);
       localStorage.setItem("pass", password);
     };
@@ -52,6 +64,14 @@ const Authenticate = App =>
       this.setState({ loggedIn: true });
       const username = this.state.usernameInput;
       const password = this.state.passwordInput;
+      const user = {
+        username: this.state.usernameInput,
+        password: this.state.passwordInput
+      };
+      axios
+        .post("https://airfitness.herokuapp.com/api/instructors/login", user)
+        .then(res => console.log(res))
+        .catch(error => console.log(error));
       localStorage.setItem("user", username);
       localStorage.setItem("pass", password);
     };

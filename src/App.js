@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     console.log(this.state.user.priv);
     if (this.state.user.priv === "instructor") {
-      return <Instructor />;
+      return <Instructor user={this.state.user} />;
     }
     if (this.state.user.priv === "user") {
       return <User />;

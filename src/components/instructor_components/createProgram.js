@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class CreateProgram extends Component {
   constructor(props) {
+    console.log(props.user);
     super(props);
     this.state = {
+      user: props.user,
       class_name: "",
       times: "",
       price: "",
-      location: ""
+      location: "",
+      types: ""
     };
   }
   editInputHandler = e => {
@@ -15,10 +19,27 @@ class CreateProgram extends Component {
   };
   submitHandler = e => {
     e.preventDefault();
-    console.log(e);
     //axios call
+    const token = this.state.user.token;
+    let types = this.state.types.split(",");
+    let newClass = {
+      addedClass: {
+        class_name: this.state.class_name,
+        times: this.state.times,
+        price: this.state.price,
+        location: this.state.location,
+        instructorId: this.state.user.id
+      },
+      types: types
+    };
+    console.log(newClass);
+    axios
+      .post(`https://airfitness.herokuapp.com/api/classes/${token}`, newClass)
+      .then(res => console.log(res.data))
+      .catch(error => console.log(error));
   };
   render() {
+    console.log(this.state);
     return (
       <div>
         Create Program
@@ -58,6 +79,14 @@ class CreateProgram extends Component {
             placeholder="location"
             value={this.state.location}
             required
+          />
+          type of class:
+          <input
+            name="types"
+            type="text"
+            onChange={this.editInputHandler}
+            placeholder="type of class"
+            value={this.state.types}
           />
           <button onClick={this.submitHandler}>Create Program</button>
         </form>

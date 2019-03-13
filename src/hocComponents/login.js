@@ -24,6 +24,7 @@ import React from "react";
 //   };
 //   render() {
 const Login = props => {
+  console.log(props);
   return (
     <div>
       {(() => {

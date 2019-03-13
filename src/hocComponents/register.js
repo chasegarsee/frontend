@@ -29,7 +29,7 @@ const Register = props => {
     <div>
       {(() => {
         switch (props.typeofmem) {
-          case "insturctor":
+          case "instructor":
             return <div>instructor registration</div>;
           case "user":
             return <div>user registration</div>;

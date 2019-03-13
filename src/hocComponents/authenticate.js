@@ -12,16 +12,17 @@ const Authenticate = App =>
         typeofmem: null,
         selected: false,
         usernameInput: "",
-        passwordInput: ""
+        passwordInput: "",
+        user: {}
       };
     }
 
     componentDidMount() {
-      if (localStorage.getItem("user")) {
-        this.setState({ ...this.state, loggedIn: true });
-      } else {
-        this.setState({ ...this.state, loggedIn: false });
-      }
+      // if (localStorage.getItem("user")) {
+      //   this.setState({ ...this.state, loggedIn: true });
+      // } else {
+      //   this.setState({ ...this.state, loggedIn: false });
+      // }
     }
 
     authHandler = e => {
@@ -41,53 +42,107 @@ const Authenticate = App =>
     };
     submitRegisterHandler = e => {
       e.preventDefault();
-      this.setState({ loggedIn: true });
-      const username = this.state.usernameInput;
-      const password = this.state.passwordInput;
+      // this.setState({ loggedIn: true });
+      // const username = this.state.usernameInput;
+      // const password = this.state.passwordInput;
       const newUser = {
         username: this.state.usernameInput,
         password: this.state.passwordInput
       };
-      axios
-        .post(
-          "https://airfitness.herokuapp.com/api/instructors/register",
-          newUser
-        )
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
+      if (this.state.typeofmem === "instructor") {
+        axios
+          .post(
+            "https://airfitness.herokuapp.com/api/instructors/register",
+            newUser
+          )
+          .then(() =>
+            axios
+              .post(
+                "https://airfitness.herokuapp.com/api/instructors/login",
+                newUser
+              )
+              .then(res =>
+                this.setState({
+                  ...this.state,
+                  user: res.data,
+                  loggedIn: true
+                })
+              )
+              .catch(error => console.log(error))
+          )
+          .catch(error => console.log(error));
+      }
+      if (this.state.typeofmem === "user") {
+        axios
+          .post("https://airfitness.herokuapp.com/api/users/register", newUser)
+          .then(() =>
+            axios
+              .post("https://airfitness.herokuapp.com/api/users/login", newUser)
+              .then(res =>
+                this.setState({
+                  ...this.state,
+                  user: res.data,
+                  loggedIn: true
+                })
+              )
+              .catch(error => console.log(error))
+          )
+          .catch(error => console.log(error));
+      }
+
       //
-      localStorage.setItem("user", username);
-      localStorage.setItem("pass", password);
+      // localStorage.setItem("user", username);
+      // localStorage.setItem("pass", password);
     };
     submitLoginHandler = e => {
       e.preventDefault();
-      this.setState({ loggedIn: true });
-      const username = this.state.usernameInput;
-      const password = this.state.passwordInput;
+      // this.setState({ loggedIn: true });
+      // const username = this.state.usernameInput;
+      // const password = this.state.passwordInput;
       const user = {
         username: this.state.usernameInput,
         password: this.state.passwordInput
       };
-      axios
-        .post("https://airfitness.herokuapp.com/api/instructors/login", user)
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-      localStorage.setItem("user", username);
-      localStorage.setItem("pass", password);
+      if (this.state.typeofmem === "instructor") {
+        axios
+          .post("https://airfitness.herokuapp.com/api/instructors/login", user)
+          .then(res =>
+            this.setState({
+              ...this.state,
+              user: res.data,
+              loggedIn: true
+            })
+          )
+          .catch(error => console.log(error));
+      }
+      if (this.state.typeofmem === "user") {
+        axios
+          .post("https://airfitness.herokuapp.com/api/users/login", user)
+          .then(res =>
+            this.setState({
+              ...this.state,
+              user: res.data,
+              loggedIn: true
+            })
+          )
+          .catch(error => console.log(error));
+      }
+      // localStorage.setItem("user", username);
+      // localStorage.setItem("pass", password);
     };
 
     render() {
-      console.log(
-        `this.state loggedin: ${this.state.loggedIn}, this.state.register: ${
-          this.state.register
-        }, this.state.typeofmem: ${
-          this.state.typeofmem
-        }, this.state.selected: ${this.state.selected}, this.state.username: ${
-          this.state.usernameInput
-        }, this.state.password: ${this.state.passwordInput}`
-      );
-      if (this.state.loggedIn && this.state.typeofmem)
-        return <App typeofmem={this.state.typeofmem} />;
+      console.log(this.state.user);
+      // console.log(
+      //   `this.state loggedin: ${this.state.loggedIn}, this.state.register: ${
+      //     this.state.register
+      //   }, this.state.typeofmem: ${
+      //     this.state.typeofmem
+      //   }, this.state.selected: ${this.state.selected}, this.state.username: ${
+      //     this.state.usernameInput
+      //   }, this.state.password: ${this.state.passwordInput}`
+      // );
+      if (this.state.loggedIn) return <App user={this.state.user} />;
       return (
         <Authorize
           loggedIn={this.state.loggedIn}

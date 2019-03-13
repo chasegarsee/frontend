@@ -5,22 +5,30 @@ import User from "./components/user_components/user";
 
 class App extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
-      typeofmem: props.typeofmem,
-      id: ""
+      user: props.user
     };
   }
+  componentDidMount() {
+    // this.setState({
+    //   user: {}
+    // });
+  }
   render() {
-    if (this.state.typeofmem === "instructor") {
-      return <Instructor id={this.state.id} />;
+    console.log(this.state.user.priv);
+    if (this.state.user.priv === "instructor") {
+      return <Instructor />;
     }
-    if (this.state.typeofmem === "user") {
-      return <User id={this.state.id} />;
+    if (this.state.user.priv === "user") {
+      return <User />;
     }
     return (
       <div className="App">
-        <header className="App-header">Air Fitness Test</header>
+        <header className="App-header">
+          Access Denied No user information
+        </header>
       </div>
     );
   }

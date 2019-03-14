@@ -10,12 +10,10 @@ class Type extends Component {
 
   deleteHandler = e => {
     e.preventDefault();
-    const id = { id: this.props.type.id };
+    const id = this.props.type.id;
     // axios call to delete
     axios
-      .delete(`https://airfitness.herokuapp.com/api/classes/${id}/types`, {
-        data: { typeId: id }
-      })
+      .delete(`https://airfitness.herokuapp.com/api/classes/${id}/types`)
       .then(res => {
         console.log(res.status);
         this.props.refresh();

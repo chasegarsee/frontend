@@ -29,7 +29,7 @@ class ProgramPunch extends Component {
     const id = this.state.id;
     const body = {
       instructorId: this.state.instructorId,
-      cards: [id]
+      card: this.state.id
     };
     const headers = {
       headers: {
@@ -45,9 +45,9 @@ class ProgramPunch extends Component {
       )
       .then(res => {
         console.log(res.data.message);
-        // this.setState({
-        //     message: res.data.message
-        // })
+        this.setState({
+          punches_available: res.data.punchCard.punches_available
+        });
         this.props.refresh();
       })
       .catch(error => console.log(error));

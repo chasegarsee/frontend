@@ -103,6 +103,7 @@ class CreateProgram extends Component {
             onChange={this.editInputHandler}
             placeholder="type of class"
             value={this.state.types}
+            required
           />
           <button onClick={this.submitHandler}>Create Program</button>
         </form>

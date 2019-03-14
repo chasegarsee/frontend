@@ -11,7 +11,8 @@ class EditProgram extends Component {
       class_name: props.program.class_name,
       times: props.program.times,
       price: props.program.price,
-      location: props.program.location
+      location: props.program.location,
+      type: ""
     };
   }
   editInputHandler = e => {
@@ -32,6 +33,17 @@ class EditProgram extends Component {
         authorization: token
       }
     };
+    //
+    let type = { type: this.state.type };
+    if (this.state.type) {
+      axios
+        .post(`https://airfitness.herokuapp.com/api/classes/${id}/types`, type)
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(error => console.log(error));
+    }
+    //
     axios
       .put(
         `https://airfitness.herokuapp.com/api/classes/${id}`,
@@ -46,6 +58,24 @@ class EditProgram extends Component {
           price: this.state.price,
           location: this.state.location
         });
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
+  };
+  deleteHandler = e => {
+    e.preventDefault();
+    const token = this.props.user.token;
+    const id = this.state.id;
+    const headers = {
+      headers: {
+        authorization: token
+      }
+    };
+    //axios call to delete
+    axios
+      .delete(`https://airfitness.herokuapp.com/api/classes/${id}`, headers)
+      .then(res => {
+        console.log(res.status);
         this.props.refresh();
       })
       .catch(error => console.log(error));
@@ -91,8 +121,16 @@ class EditProgram extends Component {
             value={this.state.location}
             required
           />
+          add additional type:
+          <input
+            name="type"
+            type="text"
+            onChange={this.editInputHandler}
+            placeholder="add additional type of class"
+            value={this.state.type}
+          />
           <button onClick={this.submitHandler}>Edit Submit</button>
-          <DeleteProgram />
+          <DeleteProgram deleteHandler={this.deleteHandler} />
         </form>
       </div>
     );

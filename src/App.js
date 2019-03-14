@@ -22,7 +22,7 @@ class App extends Component {
       return <Instructor user={this.state.user} />;
     }
     if (this.state.user.priv === "user") {
-      return <User />;
+      return <User user={this.state.user} />;
     }
     return (
       <div className="App">

@@ -1,5 +1,6 @@
 import React from "react";
 import EditProgram from "./editProgram";
+import Type from "./type";
 
 // class Program extends Component {
 //   constructor(props) {
@@ -17,10 +18,10 @@ const Program = props => {
         class times: {props.program.times}
         class price: {props.program.price}
         class location: {props.program.location}
-        class type:{" "}
-        {/* {props.program.types.map(type => {
-          return <li>{type.type}</li>;
-        })} */}
+        <br />
+        {props.program.types.map(type => (
+          <Type type={type} refresh={props.refresh} />
+        ))}
       </div>
       <EditProgram
         program={props.program}

@@ -7,8 +7,8 @@ class Instructor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      programs: [],
-      user: props.user
+      user: props.user,
+      programs: []
     };
   }
   componentDidMount() {
@@ -17,20 +17,27 @@ class Instructor extends Component {
       .get(`https://airfitness.herokuapp.com/api/instructors/${Id}`)
       .then(res =>
         this.setState({
-          ...this.state,
           programs: res.data.classes
         })
       )
       .catch(error => console.log(error));
   }
+  refresh = () => {
+    console.log("fired");
+    this.componentDidMount();
+  };
   render() {
     return (
       <div>
         Instructor Component
-        <div> List of current Programs</div>
-        <Programs programs={this.state.programs} />
         <div>Create a new Program</div>
-        <CreateProgram user={this.state.user} />
+        <CreateProgram user={this.state.user} refresh={this.refresh} />
+        <div> List of current Programs: </div>
+        <Programs
+          programs={this.state.programs}
+          refresh={this.refresh}
+          user={this.state.user}
+        />
       </div>
     );
   }

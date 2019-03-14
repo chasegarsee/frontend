@@ -3,7 +3,6 @@ import axios from "axios";
 
 class CreateProgram extends Component {
   constructor(props) {
-    console.log(props.user);
     super(props);
     this.state = {
       user: props.user,
@@ -19,7 +18,6 @@ class CreateProgram extends Component {
   };
   submitHandler = e => {
     e.preventDefault();
-    //axios call
     const token = this.state.user.token;
     let types = this.state.types.split(",");
     let newClass = {
@@ -32,14 +30,27 @@ class CreateProgram extends Component {
       },
       types: types
     };
-    console.log(newClass);
+    const headers = {
+      headers: {
+        authorization: token
+      }
+    };
     axios
-      .post(`https://airfitness.herokuapp.com/api/classes/${token}`, newClass)
-      .then(res => console.log(res.data))
+      .post(`https://airfitness.herokuapp.com/api/classes/`, newClass, headers)
+      .then(res => {
+        this.setState({
+          ...this.state,
+          class_name: "",
+          times: "",
+          price: "",
+          location: "",
+          types: ""
+        });
+        this.props.refresh();
+      })
       .catch(error => console.log(error));
   };
   render() {
-    console.log(this.state);
     return (
       <div>
         Create Program

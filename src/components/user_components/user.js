@@ -1,28 +1,43 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import ProgramsList from "./programsList";
+import UserInfo from "./userInfo";
 
 class User extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       user: props.user,
       programsList: [],
-      filteredList: []
+      filteredList: [],
+      userInfo: null
     };
   }
   componentDidMount() {
+    const token = this.state.user.token;
+    const id = this.state.user.id;
+    const headers = {
+      headers: {
+        authorization: token
+      }
+    };
     Axios.get(`https://airfitness.herokuapp.com/api/classes`)
       .then(res =>
         this.setState({
           programsList: res.data.classes
         })
       )
+      .then(() =>
+        Axios.get(`https://airfitness.herokuapp.com/api/users/${id}`, headers)
+      )
+      .then(res => {
+        this.setState({
+          userInfo: res.data
+        });
+      })
       .catch(error => console.log(error));
   }
   refresh = () => {
-    console.log("fired");
     this.componentDidMount();
   };
 
@@ -53,10 +68,14 @@ class User extends Component {
     });
   };
   render() {
-    console.log(this.state.programsList);
     return (
       <div>
         User Component
+        {this.state.userInfo ? (
+          <UserInfo userInfo={this.state.userInfo} />
+        ) : (
+          <></>
+        )}
         <div>
           <input
             name="searchT"

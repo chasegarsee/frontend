@@ -3,7 +3,6 @@ import axios from "axios";
 
 class CreateProgram extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       user: props.user,
@@ -37,11 +36,9 @@ class CreateProgram extends Component {
         authorization: token
       }
     };
-    console.log(newClass);
     axios
       .post(`https://airfitness.herokuapp.com/api/classes/`, newClass, headers)
       .then(res => {
-        console.log(res.data);
         this.setState({
           ...this.state,
           class_name: "",
@@ -55,7 +52,6 @@ class CreateProgram extends Component {
     this.props.refresh();
   };
   render() {
-    console.log(this.state);
     return (
       <div>
         Create Program

@@ -5,7 +5,6 @@ import User from "./components/user_components/user";
 
 class App extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       user: props.user
@@ -17,7 +16,6 @@ class App extends Component {
     // });
   }
   render() {
-    console.log(this.state.user.priv);
     if (this.state.user.priv === "instructor") {
       return <Instructor user={this.state.user} />;
     }

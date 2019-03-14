@@ -33,11 +33,12 @@ const Program = props => {
         ))}
         </div>
       </div>
-      <EditProgram
+      <button onClick={(e) => props.toggleEdit(e, props.program.id)}>{props.edit === props.program.id ? 'x' : 'Edit Program'}</button>
+      {props.edit === props.program.id && <EditProgram
         program={props.program}
         refresh={props.refresh}
         user={props.user}
-      />
+      />}
     </div>
   );
 };

@@ -11,7 +11,7 @@ const DeleteProgram = props => {
     <div className="delete-item">
       Are you sure you want to delete this program?
       <button onClick={props.deleteHandler}>Yes</button>
-      <button>No</button>
+      <button onClick={props.toggleDelete}>No</button>
     </div>
   );
 };

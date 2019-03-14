@@ -1,29 +1,66 @@
 import React, { Component } from "react";
+import DeleteProgram from "./deleteProgram";
+import axios from "axios";
 
 class EditProgram extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
-    this.state = {};
+    this.state = {
+      id: props.program.id,
+      class_name: props.program.class_name,
+      times: props.program.times,
+      price: props.program.price,
+      location: props.program.location
+    };
   }
   editInputHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   submitHandler = e => {
     e.preventDefault();
-    console.log(e);
-    //axios call to update
+    const token = this.props.user.token;
+    const id = this.state.id;
+    let updatedClass = {
+      class_name: this.state.class_name,
+      times: this.state.times,
+      price: this.state.price,
+      location: this.state.location
+    };
+    const headers = {
+      headers: {
+        authorization: token
+      }
+    };
+    axios
+      .put(
+        `https://airfitness.herokuapp.com/api/classes/${id}`,
+        updatedClass,
+        headers
+      )
+      .then(res => {
+        this.setState({
+          ...this.state,
+          class_name: this.state.class_name,
+          times: this.state.times,
+          price: this.state.price,
+          location: this.state.location
+        });
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
   };
   render() {
     return (
       <div>
-        Create Program
+        Edit Program
         <form onSubmit={this.submitHandler}>
           class name:
           <input
             name="class_name"
             type="text"
             onChange={this.editInputHandler}
-            placeholder={this.props.class_name}
+            placeholder={this.state.class_name}
             value={this.state.class_name}
             required
           />
@@ -32,7 +69,7 @@ class EditProgram extends Component {
             name="times"
             type="text"
             onChange={this.editInputHandler}
-            placeholder={this.props.times}
+            placeholder={this.state.times}
             value={this.state.times}
             required
           />
@@ -41,7 +78,7 @@ class EditProgram extends Component {
             name="price"
             type="number"
             onChange={this.editInputHandler}
-            placeholder={this.props.price}
+            placeholder={this.state.price}
             value={this.state.price}
             required
           />
@@ -50,11 +87,12 @@ class EditProgram extends Component {
             name="location"
             type="text"
             onChange={this.editInputHandler}
-            placeholder={this.props.location}
+            placeholder={this.state.location}
             value={this.state.location}
             required
           />
-          <button onClick={this.submitHandler}>Create Program</button>
+          <button onClick={this.submitHandler}>Edit Submit</button>
+          <DeleteProgram />
         </form>
       </div>
     );

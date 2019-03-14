@@ -83,7 +83,7 @@ const Authorize = props => {
             name="typeofmem"
             type="radio"
             onChange={props.authHandler}
-            value={"insturctor"}
+            value={"instructor"}
           />
           instructor
           <br />

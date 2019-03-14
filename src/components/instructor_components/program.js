@@ -14,22 +14,24 @@ import Type from "./type";
 const Program = props => {
   console.log(props);
   return (
-    <div>
-      Program/class
+    <div className="program">
+      <h3>Program/class</h3>
       <ProgramPunches
         id={props.program.id}
         user={props.user}
         refresh={props.refresh}
       />
-      <div>
+      <div className="program-details">
         class name: {props.program.class_name}
         class times: {props.program.times}
         class price: {props.program.price}
         class location: {props.program.location}
         <br />
+        <div className="types">
         {props.program.types.map(type => (
           <Type type={type} refresh={props.refresh} />
         ))}
+        </div>
       </div>
       <EditProgram
         program={props.program}

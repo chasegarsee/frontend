@@ -55,8 +55,8 @@ class ProgramPunch extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className="punchCard">
+        <div className="punch-details">
           punch id: {this.state.id}
           user id: {this.state.userId}
           punches left: {this.state.punches_available}

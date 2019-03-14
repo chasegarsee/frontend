@@ -24,8 +24,8 @@ class ProgramPunches extends Component {
   render() {
     console.log(this.state.classInfo);
     return (
-      <div>
-        Punch Passes for this class: <br />
+      <div className="Punch-cards">
+        <h3>Punch Passes for this class:</h3> <br />
         {this.state.classInfo ? (
           this.state.classInfo.cards.map(programPunch => (
             <ProgramPunch

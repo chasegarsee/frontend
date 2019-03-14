@@ -28,9 +28,9 @@ class Instructor extends Component {
   };
   render() {
     return (
-      <div>
-        Instructor Component
-        <div>Create a new Program</div>
+      <div className="instructor">
+        <h1>Instructor Component</h1>
+        <h3>Create a new Program</h3>
         <CreateProgram user={this.state.user} refresh={this.refresh} />
         <div> List of current Programs: </div>
         <Programs

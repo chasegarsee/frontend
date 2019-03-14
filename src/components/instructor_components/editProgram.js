@@ -81,7 +81,7 @@ class EditProgram extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="edit-program">
         Edit Program
         <form onSubmit={this.submitHandler}>
           class name:

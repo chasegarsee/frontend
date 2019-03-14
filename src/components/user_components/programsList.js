@@ -3,8 +3,8 @@ import Aprogram from "./aProgram";
 
 const ProgramsList = props => {
   return (
-    <div>
-      programs list:
+    <div className="programs">
+      <h3>programs list:</h3>
       {props.programsList.map(aProgram => (
         <Aprogram
           aProgram={aProgram}

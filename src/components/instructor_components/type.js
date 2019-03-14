@@ -24,7 +24,7 @@ class Type extends Component {
   // const Type = props => {
   render() {
     return (
-      <div>
+      <div className="type">
         <div>type: {this.props.type.type}</div>
         <DeleteType
           id={this.props.type.id}

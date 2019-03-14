@@ -40,7 +40,7 @@ class PunchCard extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="purchase">
         purchase punch card:
         <button onClick={this.submitHandler}>Purchase</button>
       </div>

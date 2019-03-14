@@ -8,7 +8,7 @@ import React from "react";
 const DeleteProgram = props => {
   // render() {
   return (
-    <div>
+    <div className="delete-item">
       Are you sure you want to delete this program?
       <button onClick={props.deleteHandler}>Yes</button>
       <button>No</button>

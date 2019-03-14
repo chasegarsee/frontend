@@ -29,7 +29,6 @@ const Authenticate = App =>
       this.setState({ ...this.state, [e.target.name]: e.target.value });
     };
     handleAuth = e => {
-      console.log(e);
       e.preventDefault();
       if (this.state.register === null || this.state.typeofmem === null) {
         alert("must pick register/login and instructor/user fileds");
@@ -132,7 +131,6 @@ const Authenticate = App =>
     };
 
     render() {
-      console.log(this.state.user);
       // console.log(
       //   `this.state loggedin: ${this.state.loggedIn}, this.state.register: ${
       //     this.state.register

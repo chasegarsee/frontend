@@ -4,7 +4,6 @@ import axios from "axios";
 
 class EditProgram extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       id: props.program.id,

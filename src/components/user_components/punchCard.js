@@ -3,7 +3,6 @@ import Axios from "axios";
 
 class PunchCard extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
     this.state = {
       token: props.user.token,
@@ -27,7 +26,6 @@ class PunchCard extends Component {
         authorization: token
       }
     };
-    console.log(`punchCard: ${punchCard}`);
     //axios call
     Axios.post(
       `https://airfitness.herokuapp.com/api/classes/${id}/punch`,

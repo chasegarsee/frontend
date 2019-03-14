@@ -1,4 +1,5 @@
 import React from "react";
+import ProgramPunches from "./programPunches";
 import EditProgram from "./editProgram";
 import Type from "./type";
 
@@ -11,8 +12,15 @@ import Type from "./type";
 //   }
 //   render() {
 const Program = props => {
+  console.log(props);
   return (
     <div>
+      Program/class
+      <ProgramPunches
+        id={props.program.id}
+        user={props.user}
+        refresh={props.refresh}
+      />
       <div>
         class name: {props.program.class_name}
         class times: {props.program.times}

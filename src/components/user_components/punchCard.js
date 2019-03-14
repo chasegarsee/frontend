@@ -19,7 +19,6 @@ class PunchCard extends Component {
     const id = this.state.classId;
     const punchCard = {
       userId: this.state.userId,
-      classId: this.state.classId,
       instructorId: this.state.instructorId,
       price: this.state.price
     };

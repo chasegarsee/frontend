@@ -1,5 +1,6 @@
 import React from "react";
 import Atype from "./aType";
+import PunchCard from "./punchCard";
 
 const Aprogram = props => {
   return (
@@ -14,6 +15,11 @@ const Aprogram = props => {
           <Atype aType={aType} />
         ))}
       </div>
+      <PunchCard
+        punchCard={props.aProgram}
+        user={props.user}
+        refresh={props.refresh}
+      />
     </div>
   );
 };

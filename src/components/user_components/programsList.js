@@ -6,7 +6,11 @@ const ProgramsList = props => {
     <div>
       programs list:
       {props.programsList.map(aProgram => (
-        <Aprogram aProgram={aProgram} user={props.user} />
+        <Aprogram
+          aProgram={aProgram}
+          user={props.user}
+          refresh={props.refresh}
+        />
       ))}
     </div>
   );

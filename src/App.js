@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import Instructor from "./components/instructor_components/instructor";
 import User from "./components/user_components/user";
+import "./hocComponents/css/authorize.css";
+import "./hocComponents/css/login.css";
+import "./hocComponents/css/register.css";
 
 class App extends Component {
   constructor(props) {

@@ -53,9 +53,11 @@ const Authorize = props => {
     );
   }
   return (
-    <div>
+    <div className="authorize">
       <form onSubmit={props.handleAuth}>
-        <div>register or login</div>
+        <div className="registerOrLogin" registerOrLogin>
+          register or login
+        </div>
         <label>
           <input
             name="register"

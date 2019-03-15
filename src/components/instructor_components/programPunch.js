@@ -55,8 +55,8 @@ class ProgramPunch extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className="punchCard">
+        <div className="punch-details">
           punch id: {this.state.id}
           user id: {this.state.userId}
           punches left: {this.state.punches_available}
@@ -65,7 +65,7 @@ class ProgramPunch extends Component {
           {/* update punches: {this.state.updated_punches_available}
           add punch:<button onClick={this.incrementItem}>+1</button>
           minus punch: <button onClick={this.decrementItem}>-1</button> */}
-          <button onClick={this.submitHandler}>update punch card</button>
+          <button onClick={this.submitHandler}>Punch it! (uses an available punch)</button>
         </div>
       </div>
     );

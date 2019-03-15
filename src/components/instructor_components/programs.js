@@ -12,10 +12,14 @@ import Program from "./program";
 const Programs = props => {
   // render() {
   return (
-    <div>
-      programs list:
+    <div className="programs">
+      <h3>programs list:</h3>
       {props.programs.map(program => (
-        <Program program={program} user={props.user} refresh={props.refresh} />
+        <Program program={program} user={props.user} refresh={props.refresh}
+        toggleEdit={props.toggleEdit}
+        toggleDelete={props.toggleDelete}
+        edit={props.edit}
+        delete={props.delete} />
       ))}
     </div>
   );

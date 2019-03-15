@@ -69,14 +69,14 @@ class User extends Component {
   };
   render() {
     return (
-      <div>
-        User Component
+      <div className="user">
+        <h1>User Component</h1>
         {this.state.userInfo ? (
           <UserInfo userInfo={this.state.userInfo} />
         ) : (
           <></>
         )}
-        <div>
+        <div className="search-bars">
           <input
             name="searchT"
             type="text"

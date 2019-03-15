@@ -9,7 +9,7 @@ import UserPunch from "./userPunch";
 //   render() {
 const UserInfo = props => {
   return (
-    <div>
+    <div className="punchCards">
       {props.userInfo.punchCards.map(userPunch => (
         <UserPunch userPunch={userPunch} />
       ))}

@@ -11,7 +11,8 @@ class EditProgram extends Component {
       times: props.program.times,
       price: props.program.price,
       location: props.program.location,
-      type: ""
+      type: "",
+      delete: false
     };
   }
   editInputHandler = e => {
@@ -79,9 +80,17 @@ class EditProgram extends Component {
       })
       .catch(error => console.log(error));
   };
+
+  toggleDelete = e => {
+    e.preventDefault();
+    this.setState(prev => ({
+      delete: !prev.delete
+    }))
+  }
+
   render() {
     return (
-      <div>
+      <div className="edit-program">
         Edit Program
         <form onSubmit={this.submitHandler}>
           class name:
@@ -129,7 +138,8 @@ class EditProgram extends Component {
             value={this.state.type}
           />
           <button onClick={this.submitHandler}>Edit Submit</button>
-          <DeleteProgram deleteHandler={this.deleteHandler} />
+          <button onClick={this.toggleDelete}>{this.state.delete ? 'cancel' : 'Delete Program'}</button>
+          {this.state.delete && <DeleteProgram deleteHandler={this.deleteHandler}  toggleDelete={this.state.toggleDelete} />}
         </form>
       </div>
     );

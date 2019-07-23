@@ -53,8 +53,8 @@ class CreateProgram extends Component {
   };
   render() {
     return (
-      <div>
-        Create Program
+      <div className="create-program">
+        <h2>Create Program</h2>
         <form onSubmit={this.submitHandler}>
           class name:
           <input

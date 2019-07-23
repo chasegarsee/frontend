@@ -2,10 +2,10 @@ import React from "react";
 
 const DeleteType = props => {
   return (
-    <div>
+    <div className="deleteItem">
       Are you sure you want to delete this type?
       <button onClick={props.deleteHandler}>Yes</button>
-      <button>No</button>
+      <button onClick={props.toggleDel}>No</button>
     </div>
   );
 };

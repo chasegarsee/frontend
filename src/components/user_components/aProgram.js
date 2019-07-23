@@ -4,8 +4,8 @@ import PunchCard from "./punchCard";
 
 const Aprogram = props => {
   return (
-    <div>
-      <div>
+    <div className="program">
+      <div className="program-details">
         class name: {props.aProgram.class_name}
         class times: {props.aProgram.times}
         class price: {props.aProgram.price}

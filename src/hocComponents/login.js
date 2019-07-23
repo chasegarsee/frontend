@@ -25,7 +25,7 @@ import React from "react";
 //   render() {
 const Login = props => {
   return (
-    <div>
+    <div className="login">
       {(() => {
         switch (props.typeofmem) {
           case "instructor":
